@@ -1,103 +1,89 @@
-# StellarPay Student Wallet - Level 1
+# StellarPay
+
+### Decentralized Student Wallet & Soroban Rewards Platform
+
+🎥 **Demo Video**
+
+https://drive.google.com/file/d/1n7bFCVEpt_LJg8dm9rIj_mqfqmmbOjBn/view?usp=sharing (Placeholder/User Video)
+
+🌐 **Live Demo**
+
+[StellarPay Live App](https://stellarpay-phi.vercel.app/)
+
+---
+
+# Overview
 
 StellarPay is a production-quality Stellar dApp designed specifically for students. It combines the speed of the Stellar network with the power of Soroban smart contracts to create a modern, rewarding payment ecosystem.
 
----
-
-## 🚀 Features
-
-- **Freighter Wallet Integration**: Seamless authentication, connection management, and secure browser transaction signing.
-- **XLM Payments**: Send instant, low-cost payments across the globe on the Stellar Testnet.
-- **Balance Handling**: Real-time native XLM balance fetching from Horizon servers and auto-refresh after transaction submission.
-- **Error Handling**: Displays visual warnings for missing extensions, invalid public addresses, and insufficient balances.
-- **Premium UI**: Glassmorphic dark theme with smooth hover state indicators and responsive layouts across mobile and desktop.
+This repository contains both the **Soroban smart contracts** and the **Vite React frontend**, fully integrated and deployed on the Stellar Testnet.
 
 ---
 
-## 🛠 Tech Stack
+# Features
 
-- **Frontend**: React, Vite, TypeScript
-- **Routing**: React Router (`react-router-dom`)
-- **Styling**: Tailwind CSS v3, Material Symbols Icons
-- **Blockchain**: Stellar SDK (`stellar-sdk`), Freighter Wallet API (`@stellar/freighter-api`)
-- **Network**: Stellar Testnet
-
----
-
-## 📋 Installation & Getting Started
-
-1. **Clone the Repository**
-   ```bash
-   git clone <repository_url>
-   cd stitch_stellarpay_student_wallet
-   ```
-
-2. **Install Dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment Variables**
-   Create a `.env` file in the root directory:
-   ```env
-   VITE_NETWORK=testnet
-   VITE_CONTRACT_ID=CDUI3V6W7G3E5W6K3U4I5O6E7P8A9S0D1F2G3H4J5K6L7M8N9O0P1Q2R
-   ```
-
-4. **Run Locally**
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:5173/` in your browser.
-
-5. **Build for Production**
-   ```bash
-   npm run build
-   ```
+- **Multi-Wallet Support**: Freighter, Albedo, Private Secret Keys, BIP-39 Recovery Mnemonics, and Read-Only Address modes.
+- **Smart Contract Rewards**: Points minting and claims on the Stellar Testnet.
+- **Inter-Contract Architecture**: `RewardVault` contract verifies registration on `StudentRegistry` on-chain before executing actions.
+- **Real-Time Logging**: Live transaction streaming and log terminal in the explorer view.
+- **High-Contrast Design**: Sleek, responsive monochromatic light/dark interface.
+- **CI/CD Build Pipeline**: Automatic testing and build validation via GitHub Actions.
 
 ---
 
-## 🦊 Freighter Wallet Setup Guide
+# Tech Stack
 
-Freighter is a browser extension that enables you to sign Stellar transactions.
+## Frontend
+- React
+- Vite
+- Tailwind CSS & Vanilla CSS
+- TypeScript
 
-1. **Install Freighter**:
-   Download and install the extension from [freighter.app](https://www.freighter.app/) for your browser (Chrome, Firefox, Edge).
+## Blockchain
+- `@stellar/stellar-sdk`
+- Horizon API
+- Soroban RPC
 
-2. **Create/Import Account**:
-   Open the extension, set up a secure password, and write down your 12-word recovery mnemonic phrase.
-
-3. **Switch to Stellar Testnet**:
-   - Open the Freighter extension window.
-   - Click the gear/settings icon in the bottom right.
-   - Go to **Network** (or select active network at the top).
-   - Choose **Testnet** (Stellar Testnet Network).
-
----
-
-## 🌟 Funding Your Testnet Wallet (Stellar Friendbot)
-
-To send transactions, your newly created Testnet account needs XLM to establish its starting balance.
-
-1. **Copy Wallet Address**:
-   Open Freighter and copy your public address (starts with `G...`).
-
-2. **Request Test Funds (Friendbot)**:
-   - Go to the [Stellar Laboratory Friendbot Tool](https://laboratory.stellar.org/#account-creator?network=testnet).
-   - Paste your public key into the "Friendbot: Fund a Test Network Account" input field.
-   - Click **Get Test Network XLM**.
-   - Your account is now active on the testnet with 10,000 test XLM!
+## Wallets
+- Freighter
+- Albedo
+- BIP-39 local keys
 
 ---
 
-## 📷 Screenshots (Level 1 Verification)
+# Architecture
 
-- **Landing Page & Connection Flow**: Accessible on home page routing (`/`).
-- **Dashboard Balance Cards**: View native balances and refresh buttons after wallet connection (`/dashboard`).
-- **Payment Transfer Screen**: Recipient address input, amount validators, and memo logs (`/send`).
-- **Successful Transaction Receipts**: Displays confirmed status and copyable Transaction Hashes.
-- **Settings Info**: System details and logout configurations (`/settings`).
+```mermaid
+flowchart TD
+    User --> Wallet
+    Wallet --> Frontend
+    Frontend --> SorobanRPC
+    SorobanRPC --> RewardVault[Reward Vault Contract]
+    RewardVault -->|Cross-Contract Check| StudentRegistry[Student Registry Contract]
+    RewardVault --> StellarTestnet
+    StudentRegistry --> StellarTestnet
+```
 
+---
+
+# On-Chain Deployments (Stellar Testnet)
+
+- **Student Registry Contract ID**: `CBZD7SUMJYITJLX33IS3IXIIIPS7TRO5IM5TAGKJNINVY3I6O44VK56P`
+- **Reward Vault Contract ID**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
+- **Vault Link Initialization Hash**: `80a65f7740a0b589e1a9424bf98600e12ea8d2ef`
+
+---
+
+# Screenshots
+
+### CI/CD Pipeline Running
+<img width="958" height="474" alt="image" src="https://github.com/user-attachments/assets/828c2d82-798c-4d27-aac7-a917ea704c8c" />
+
+### Mobile UI Screenshot 
+![alt text](image.png)
+
+### Test case 
+![alt text](image-1.png)
 ---
 
 ## 🌐 Deployed Smart Contract (Level 2 Testnet Proof)
@@ -107,3 +93,26 @@ The Soroban smart contract is deployed on the Stellar Testnet:
 - **Contract ID**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
 - **Stellar.expert Explorer Link**: [Stellar.expert Testnet Explorer - Contract CCE45F...](https://stellar.expert/explorer/testnet/contract/CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL)
 
+
+# Getting Started
+
+## Smart Contract Workspace
+To run Rust contract tests locally:
+```bash
+cd contracts
+cargo test
+```
+
+## Frontend Application
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Run dev server**:
+   ```bash
+   npm run dev
+   ```
+3. **Build bundle**:
+   ```bash
+   npm run build
+   ```
