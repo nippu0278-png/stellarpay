@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "student_registry",
+    "reward_vault",
+]
+resolver = "2"
