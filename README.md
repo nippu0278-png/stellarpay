@@ -77,13 +77,16 @@ flowchart TD
 # Screenshots
 
 ### CI/CD Pipeline Running
-<img width="958" height="474" alt="image" src="https://github.com/user-attachments/assets/828c2d82-798c-4d27-aac7-a917ea704c8c" />
+<img width="959" height="474" alt="image" src="https://github.com/user-attachments/assets/d8602c20-7a7e-491f-a2d4-d17e16adcec4" />
+
 
 ### Mobile UI Screenshot 
-![alt text](image.png)
+<img width="202" height="401" alt="image" src="https://github.com/user-attachments/assets/1cd67b2d-6567-48ac-ab73-f42c0ff508bd" />
+
 
 ### Test case 
-![alt text](image-1.png)
+<img width="404" height="148" alt="image" src="https://github.com/user-attachments/assets/8ca1e81d-6fb8-43e2-87dd-af0ee15e2382" />
+
 ---
 
 ## 🌐 Deployed Smart Contract (Level 2 Testnet Proof)
