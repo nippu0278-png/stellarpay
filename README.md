@@ -96,6 +96,27 @@ The Soroban smart contract is deployed on the Stellar Testnet:
 - **Contract ID**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
 - **Stellar.expert Explorer Link**: [Stellar.expert Testnet Explorer - Contract CCE45F...](https://stellar.expert/explorer/testnet/contract/CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL)
 
+---
+
+## 🛠️ Stellar Level 3 Verification & Function Mapping
+
+All smart contract source files and frontend integrations are committed and fully tracked by Git. 
+
+For full details, see the **[Stellar Level 3 Validation Report](stellar_level3_validation_report.md)**.
+
+### Direct Function Mapping
+
+* **`registerStudent() → register_student()`**
+  * **Frontend Implementation:** [`StudentRewards.tsx`](src/pages/StudentRewards.tsx#L93-L131) and [`ContractExplorer.tsx`](src/pages/ContractExplorer.tsx#L56-L99) invoke this to register a new student address with a name.
+  * **Contract Implementation:** [`reward_vault/src/lib.rs`](contract/reward_vault/src/lib.rs#L42-L47) (acting as a cross-contract wrapper) calls [`student_registry/src/lib.rs`](contract/student_registry/src/lib.rs#L16-L21).
+* **`claimReward() → claim_reward()`**
+  * **Frontend Implementation:** [`StudentRewards.tsx`](src/pages/StudentRewards.tsx#L171-L207) invokes this to spend/deduct points and redeem rewards.
+  * **Contract Implementation:** [`reward_vault/src/lib.rs`](contract/reward_vault/src/lib.rs#L79-L98) verifies the student status on-chain and deducts points.
+* **`rewardStudent() → reward_student()`**
+  * **Frontend Implementation:** [`StudentRewards.tsx`](src/pages/StudentRewards.tsx#L134-L168) and [`ContractExplorer.tsx`](src/pages/ContractExplorer.tsx#L102-L146) invoke this to award points for completed educational milestones.
+  * **Contract Implementation:** [`reward_vault/src/lib.rs`](contract/reward_vault/src/lib.rs#L50-L70) validates student registration and mints reward points.
+
+---
 
 # Getting Started
 
